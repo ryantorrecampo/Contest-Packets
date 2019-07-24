@@ -15,7 +15,7 @@ let hourglass = word => {
     }
     return arr;
 }
-arr.map(item=> {
+arr.map(item => {
     hourglass(item).map(item => console.log(item));
     console.log('--------------');
 })
