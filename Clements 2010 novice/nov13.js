@@ -1,22 +1,32 @@
 let line = "15 / 3 + 6 / 2";
 let operators = ["/", "*", "-", "+"];
-let stack = [];
+let counter = 0;
+let op = "";
 
 line.split(" ").map(item => {
+    if (!operators.includes(item)) {
+        if (counter == 0) {
+            counter = item;
+        } else {
+            counter = eval(`${counter} ${op} ${item}`);
+        }
+    }
     if (operators.includes(item)) {
-        let weight = 0;
-        if (item == "/" || item == "*") {
-            weight = 1;
+        switch (item) {
+            case "*":
+                op = item;
+                break;
+            case "/":
+                op = item;
+                break;
+            case "-":
+                op = item;
+                break;
+            case "+":
+                op = item;
+                break;
         }
-        if (item == "+" || item == "-") {
-            weight = 0;
-        }
-        stack.push({
-            operator: `${item}`,
-            weight: `${weight}`
-        });
     }
 });
 
-stack.sort((a, b) => b.weight - a.weight);
-console.log(stack);
+console.log(Math.round(counter));
